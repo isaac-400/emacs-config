@@ -39,20 +39,13 @@
     (require 'gcmh)
     (gcmh-mode 1)))
 
-
-;; Loading my other config files -> https://stackoverflow.com/a/2079146
-(defconst user-init-dir
-  (cond ((boundp 'user-emacs-directory)
-         user-emacs-directory)
-        ((boundp 'user-init-directory)
-         user-init-directory)
-        (t "~/.emacs.d/")))
-
+(defconst if/emacs-user-path (file-name-directory load-file-name)
+	"Where the init files live")
 
 (defun load-user-file (file)
   (interactive "f")
   "Load a file in current user's configuration directory"
-  (load-file (expand-file-name file user-init-dir)))
+  (load-file (expand-file-name file if/emacs-user-path)))
 
 
 (load-user-file "lisp/programming.el")
