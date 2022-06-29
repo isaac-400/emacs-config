@@ -3,7 +3,7 @@
 
 ;; Who am I?
 (setq user-full-name "Isaac Feldman"
-      user-mail-address "isaac.c.feldman.23@dartmouth.edu")
+      user-mail-address "icf@amazon.com")
 
 ;; straight.el Package Manger
 (defvar bootstrap-version)
@@ -24,6 +24,10 @@
 (use-package straight
   :custom
   (straight-use-package-by-default t))
+
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
 
 
 ;; Garbage Collection Optimization -- https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly
@@ -47,12 +51,11 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file if/emacs-user-path)))
 
-
+(load-user-file "lisp/documents.el")
 (load-user-file "lisp/programming.el")
 (load-user-file "lisp/appearance.el")
 (load-user-file "lisp/core.el")
 (load-user-file "lisp/other.el")
-(load-user-file "lisp/documents.el")
 (load-user-file "lisp/amazon.el")
 
 
