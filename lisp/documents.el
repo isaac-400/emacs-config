@@ -27,13 +27,15 @@
   (setq org-agenda-skip-unavailable-files t)
   (setq org-capture-templates
         '(("t" "todo" entry (file+headline if/default-org-file "INBOX")
-           "* NEXT %?\n" :clock-in t :clock-resume t))
+           "* NEXT %?\n" :clock-in t :clock-resume t)))
   
   (setq org-image-actual-width nil)
   (setq org-startup-indented t
         org-src-tab-acts-natively t))
 
 (use-package org-pomodoro)
+
+(use-package ob-typescript)
 
 ;; org-babel
 (org-babel-do-load-languages
@@ -44,11 +46,11 @@
     (typescript . t)
     (java . t)))
 
-;; org-journal
-(use-package org-journal
-  :config
-  (setq org-journal-dir "~/journal/")
-  (setq org-journal-encrypt-journal t))
+;; ;; org-journal
+;; (use-package org-journal
+;;   :config
+;;   (setq org-journal-dir "~/journal/")
+;;   (setq org-journal-encrypt-journal t))
 
 ;; read pdfs in emacs but better
 
