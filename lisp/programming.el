@@ -12,6 +12,18 @@
 ;; json
 (use-package json-mode)
 
+;; python
+(setq python-python-command "python3") ;; default to python3
+
 ;; LSP with eglot
 (use-package eglot
-  :hook (python-mode . eglot))
+ :hook (python-mode . eglot-ensure))
+
+;; tree-sitter syntax highlighting and structural editing
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode)
+  :hook
+  (tree-sitter-mode . tree-sitter-hl-mode))
+  
+(use-package tree-sitter-langs)
