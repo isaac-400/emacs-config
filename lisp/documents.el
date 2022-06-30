@@ -37,6 +37,7 @@
 
 (use-package ob-typescript)
 
+
 ;; org-babel
 (org-babel-do-load-languages
   'org-babel-load-languages
@@ -44,7 +45,8 @@
     (python . t)
     (scheme . t)
     (typescript . t)
-    (java . t)))
+    (java . t)
+    (eshell . t)))
 
 ;; ;; org-journal
 ;; (use-package org-journal
