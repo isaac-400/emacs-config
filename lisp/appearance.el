@@ -21,3 +21,6 @@
 
 ;; Modus Theme
 (load-theme 'modus-operandi)
+
+;; transpose-frame
+(use-package transpose-frame)
