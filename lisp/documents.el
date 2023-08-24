@@ -60,3 +60,5 @@
   :demand t
   :config
   (pdf-loader-install))
+
+(use-package olivetti)
