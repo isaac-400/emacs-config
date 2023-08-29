@@ -15,9 +15,14 @@
 ;; python
 (setq python-python-command "python3") ;; default to python3
 
+;; go
+(use-package go-mode)
+
 ;; LSP with eglot
 (use-package eglot
- :hook (python-mode . eglot-ensure))
+  :hook (python-mode . eglot-ensure)
+  :hook (go-mode . eglot-ensure))
+
 
 ;; tree-sitter syntax highlighting and structural editing
 (use-package tree-sitter
