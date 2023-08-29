@@ -17,7 +17,7 @@
   (setq org-agenda-files
         (directory-files-recursively "~/org/" "\.org$"))
   (setq org-todo-keywords
-        '((sequence  "TODO(t)" "PROJ(p)" "MAYBE(m)" "NEXT(n)" "|"
+        '((sequence  "TODO(t)" "IN PROGRESS(p)" "IN REVIEW(r)" "|"
                      "DONE(d)" "CANCELLED(c)" "DEFERRED(f)")))
 
   (setq org-agenda-skip-deadline-if-done t)
@@ -34,6 +34,32 @@
         org-src-tab-acts-natively t))
 
 (use-package org-pomodoro)
+
+;; Needs terminal-notifier (brew install terminal-notifier)
+(defun notify-osx (title message)
+  (call-process "terminal-notifier"
+                nil 0 nil
+                "-group" "Emacs"
+                "-title" title
+                "-sender" "org.gnu.Emacs"
+                "-message" message))
+                
+;; org-pomodoro mode hooks
+(add-hook 'org-pomodoro-finished-hook
+          (lambda ()
+          (notify-osx "Pomodoro completed!" "Time for a break.")))
+
+(add-hook 'org-pomodoro-break-finished-hook
+          (lambda ()
+          (notify-osx "Pomodoro Short Break Finished" "Ready for Another?")))
+
+(add-hook 'org-pomodoro-long-break-finished-hook
+          (lambda ()
+            (notify-osx "Pomodoro Long Break Finished" "Ready for Another?")))
+
+(add-hook 'org-pomodoro-killed-hook
+          (lambda ()
+          (notify-osx "Pomodoro Killed" "One does not simply kill a pomodoro!")))
 
 (use-package ob-typescript)
 

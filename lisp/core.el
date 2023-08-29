@@ -60,4 +60,3 @@
   (add-to-list 'tramp-remote-path "~/.toolbox/bin")
   (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
   )
-
