@@ -3,7 +3,7 @@
 
 ;; Who am I?
 (setq user-full-name "Isaac Feldman"
-      user-mail-address "icf@amazon.com")
+      user-mail-address "isaaccfeldman@gmail.com")
 
 ;; straight.el Package Manger
 (defvar bootstrap-version)
@@ -56,7 +56,6 @@
 (load-user-file "lisp/appearance.el")
 (load-user-file "lisp/core.el")
 (load-user-file "lisp/other.el")
-(load-user-file "lisp/amazon.el")
 
 
  (setq eww-retrieve-command
