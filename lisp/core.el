@@ -1,12 +1,14 @@
 ;;; core.el -*- lexical-binding: t; -*
 
-(setq shell-file-name "/bin/bash")
+(setq shell-file-name "/bin/zsh")
 
 
 ;; because I forget emacs bindings all the time
 (use-package which-key
   :config
   (which-key-mode))
+
+(setq mac-option-modifier 'meta)
 
 ;; Do not clutter the filesystem with backup files/lockfiles
 (setq backup-directory-alist `(("." . "~/.cache/emacs")))
@@ -51,12 +53,7 @@
 (use-package magit)
 
 ;; TRAMP config
-(use-package tramp
-  :config
-   ;; I don't like my history littering many spots, and don't always have a home directory on remotes.
-  (setq tramp-histfile-override "/tmp/.icf_tramp_history")
-  (add-to-list 'tramp-remote-path "/apollo/env/RemoteCommand/bin")
-  (add-to-list 'tramp-remote-path "/apollo/env/envImprovement/bin")
-  (add-to-list 'tramp-remote-path "~/.toolbox/bin")
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-  )
+(add-to-list 'tramp-remote-path "~/.toolbox/bin")
+ 
+;; ripgrep interface
+(use-package deadgrep)

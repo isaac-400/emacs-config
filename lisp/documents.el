@@ -1,7 +1,7 @@
 ;;; documents.el -*- lexical-binding: t; -*-
 
 ;; --- ORG MODE ---
-;; org-mode is fantastic as well. I keep things close to default.
+;; org-mode is fantastic. I keep things close to default.
 
 (use-package org
   :demand t
@@ -33,6 +33,12 @@
   (setq org-startup-indented t
         org-src-tab-acts-natively t))
 
+(add-hook 'org-mode-hook #'visual-line-mode)
+
+;; org export to github flavored markdown
+(use-package ox-gfm
+  :ensure t)
+
 (use-package org-pomodoro)
 
 ;; Needs terminal-notifier (brew install terminal-notifier)
@@ -63,7 +69,6 @@
 
 (use-package ob-typescript)
 
-
 ;; org-babel
 (org-babel-do-load-languages
   'org-babel-load-languages
@@ -72,13 +77,44 @@
     (scheme . t)
     (typescript . t)
     (java . t)
-    (eshell . t)))
+    (eshell . t)
+    (plantuml . t)
+    (shell .t)))
+;; setup plantuml
+(setq plantuml-jar-path "/opt/homebrew/Cellar/plantuml/1.2023.11/libexec/plantuml.jar")
+(setq plantuml-default-exec-mode 'jar)
 
-;; ;; org-journal
-;; (use-package org-journal
-;;   :config
-;;   (setq org-journal-dir "~/journal/")
-;;   (setq org-journal-encrypt-journal t))
+(setq org-plantuml-jar-path
+      (expand-file-name  "/opt/homebrew/Cellar/plantuml/1.2023.11/libexec/plantuml.jar"))
+(add-hook 'org-babel-after-execute-hook 'org-redisplay-inline-images)
+
+
+(use-package org-roam
+  :ensure t
+  :custom
+  (org-roam-directory (file-truename "~/org/roam"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+datetree "worklog.org" week))))
+
+(use-package org-transclusion
+              :after org)
+
 
 ;; read pdfs in emacs but better
 
@@ -88,3 +124,7 @@
   (pdf-loader-install))
 
 (use-package olivetti)
+
+(dolist (hook '(text-mode-hook))
+      (add-hook hook (lambda () (flyspell-mode 1))))
+

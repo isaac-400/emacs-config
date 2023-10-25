@@ -1,5 +1,5 @@
 ;;; appearance.el -*- lexical-binding: t; -*-
-;; Appeara related config
+;; Appearance related config
 
 ;; Minor display changes
 (setq display-line-numbers-type "relative")
@@ -24,3 +24,8 @@
 
 ;; transpose-frame
 (use-package transpose-frame)
+
+;; modeline
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1))
