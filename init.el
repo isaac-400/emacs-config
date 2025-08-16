@@ -13,7 +13,7 @@
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
         (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
          'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
@@ -51,11 +51,11 @@
   "Load a file in current user's configuration directory"
   (load-file (expand-file-name file if/emacs-user-path)))
 
-(load-user-file "lisp/documents.el")
+;(load-user-file "lisp/documents.el")
 (load-user-file "lisp/programming.el")
 (load-user-file "lisp/appearance.el")
 (load-user-file "lisp/core.el")
-(load-user-file "lisp/other.el")
+;;(load-user-file "lisp/other.el")
 
 
  (setq eww-retrieve-command
@@ -67,9 +67,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(doc-view-resolution 400)
  '(org-export-backends '(ascii html icalendar latex md odt org))
  '(org-export-with-toc nil)
  '(org-html-htmlize-output-type 'inline-css)
+ '(safe-local-variable-values '((org-html-postamble) (org-html-validation-link)))
  '(warning-suppress-types '((use-package) (comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

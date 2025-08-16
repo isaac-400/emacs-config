@@ -1,6 +1,6 @@
 ;;; core.el -*- lexical-binding: t; -*
 
-(setq shell-file-name "/bin/zsh")
+(setq shell-file-name "/bin/bash")
 
 
 ;; because I forget emacs bindings all the time
@@ -57,3 +57,11 @@
  
 ;; ripgrep interface
 (use-package deadgrep)
+
+
+;; personal functions
+(require 'url-util)
+(defun my/kill-url-at-point ()
+  "Kill the url at point."
+  (interactive)
+  (kill-new (url-get-url-at-point)))

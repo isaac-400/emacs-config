@@ -123,8 +123,11 @@
   :config
   (pdf-loader-install))
 
+(setq doc-view-resolution 400)
+(url-handler-mode 1)
+
 (use-package olivetti)
 
 (dolist (hook '(text-mode-hook))
-      (add-hook hook (lambda () (flyspell-mode 1))))
+  (add-hook hook (lambda () (flyspell-mode 1))))
 

@@ -9,27 +9,11 @@
 ;; typescript
 (use-package typescript-mode)
 
-;; json
-(use-package json-mode)
-
 ;; python
 (setq python-python-command "python3") ;; default to python3
 
 ;; go
 (use-package go-mode)
-
-(use-package lsp-mode
-  :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
-  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (python-mode . lsp)
-         (go-mode . lsp)
-         ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
-(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
 
 ;; tree-sitter syntax highlighting and structural editing
 (use-package tree-sitter
@@ -37,5 +21,10 @@
   (global-tree-sitter-mode)
   :hook
   (tree-sitter-mode . tree-sitter-hl-mode))
-  
 (use-package tree-sitter-langs)
+
+;; various config file modes
+(use-package dockerfile-mode)
+(use-package json-mode)
+(use-package yaml-mode)
+(use-package nix-mode)
