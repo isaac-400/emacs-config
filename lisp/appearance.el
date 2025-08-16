@@ -29,3 +29,7 @@
 (use-package doom-modeline
   :ensure t
   :init (doom-modeline-mode 1))
+
+;; nice icons that work with doom-modeline
+;; to install the fonts required run: M-x nerd-icons-install-fonts
+(use-package nerd-icons)
